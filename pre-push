@@ -1,3 +1,7 @@
 #!/usr/bin/env ruby
 
-puts ARGV
+protected_branch = 'master'
+current_branch = `$(git_current_branch)`
+
+puts current_branch.to_s
+puts "=============="
