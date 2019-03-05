@@ -1,7 +1,21 @@
 #!/usr/bin/env ruby
+load './current_branch.rb'
 
 protected_branch = 'master'
-current_branch = `$(git_current_branch)`
+current_branch = CurrentBranch.new.name
+exit_time = 10
 
 puts current_branch.to_s
 puts "=============="
+
+if current_branch == protected_branch
+  puts "You are about to push to #{protected_branch}. Press CTRL + C in #{exit_time} sec"
+
+  while exit_time > 0
+    print "#{exit_time} \r"
+    sleep 1
+    exit_time -= 1
+    $stdout.flush
+  end
+  exit 0
+end
