@@ -3,7 +3,9 @@
 install_dir = "#{ENV['HOME']}/.git_hooks"
 `git config core.hooksPath #{install_dir}`
 if $?.exitstatus.zero?
-  puts 'Installation complete'
+  `chmod +x #{install_dir}/pre-push`
+  puts "\e[42;1m#{$?.exitstatus.zero? ? 'Successfull' : 'Failed'} making pre-push executable\e[0m"
+  puts "Installation complete"
 else
   puts 'Something went wrong'
 end
