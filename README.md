@@ -4,3 +4,5 @@
 ## Installation
 
 ```git clone git@github.com:harisr92/my_git_hooks.git ~/.git_hooks```
+```chmod + ~/.git_hooks/install```
+```~/.git_hooks/install```
