@@ -3,7 +3,7 @@ load "#{ENV['HOME']}/.git_hooks/current_branch.rb"
 
 protected_branch = 'master'
 current_branch = CurrentBranch.new.name
-exit_time = 10
+exit_time = ENV['EXIT_TIME'].to_i || 10
 
 trap "SIGINT" do
   print "\n\e[42;1mCanceling pushing to #{protected_branch} \e[0m\n"
