@@ -1,0 +1,9 @@
+#!/usr/bin/env ruby
+
+install_dir = "#{ENV['HOME']}/.git_hooks"
+`git config core.hooksPath #{install_dir}`
+if $?.exitstatus.zero?
+  puts 'Installation complete'
+else
+  puts 'Something went wrong'
+end
