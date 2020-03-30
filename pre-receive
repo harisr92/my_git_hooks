@@ -1,22 +1,22 @@
 #!/usr/bin/env ruby
-require 'ruby_cowsay'
 load "#{ENV['HOME']}/.git_hooks/current_branch.rb"
 
 protected_branch = ENV['PROTECTED_BRANCH'] || 'master'
 current_branch = CurrentBranch.new.name
 exit_time = (ENV['EXIT_TIME'] || 10).to_i
-prompt = "You are about to push to #{protected_branch} press CTRL + C to cancel"
-cow = Cow.new
 
 trap "SIGINT" do
-  cow.face_type = 'paranoid'
-  print cow.say("Canceling pushing to #{protected_brancha}\n")
-  exit 1
+  print "\n\e[42;1mCanceling pushing to #{protected_branch} \e[0m\n"
+  exit 0
 end
 
+puts 'Do you want to continue'
+ch = getc
+puts ch
+
 if current_branch == protected_branch
-  cow.face_type = 'young'
-  print cow.say(prompt)
+  puts "\e[41;1mYou are about to push to #{protected_branch}. Press CTRL + C in #{exit_time} sec\e[0m"
+
   while exit_time > 0
     print "\e[42;1m=============\e[0m\e[41m#{exit_time}\e[42;1m==================\e[0m\r"
     sleep 1

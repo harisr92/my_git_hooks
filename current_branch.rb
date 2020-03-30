@@ -1,4 +1,3 @@
-require 'pry'
 class CurrentBranch
   attr_reader :ref
 
